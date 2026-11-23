@@ -64,12 +64,6 @@ Easy to fork and embed into your own tooling.
 cargo test
 ```
 
-## Commercial
-
-Need custom metrics, remote push, or a multi-node dashboard version?
-
-Typical engagement: **$600 – $1 800**.
-
 ## License
 
 MIT
