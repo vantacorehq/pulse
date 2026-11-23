@@ -1,30 +1,74 @@
 # pulse
 
-Live TUI system monitor.
+**Live TUI system monitor in pure Rust.**
 
-Pure Rust. Zero dependencies. Cyberpunk radar style.
+CPU · RAM · Disk · Network — cyberpunk radar style.
 
-## Why
+Zero dependencies. One binary. No crates.
 
-No htop, no crates, no bloat. Just a binary that paints CPU, memory, disk and network in the terminal.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## Run
+---
 
-```sh
-cargo run --release
-# or
+## Why it exists
+
+Most system monitors pull in 30+ crates or force you into a full TUI framework.
+
+`pulse` is intentionally minimal:
+
+- only `std`
+- smooth animated bars
+- works on Linux (reads `/proc` where possible)
+- falls back gracefully elsewhere
+
+Perfect for servers, containers, and developer machines where you want something lighter than `htop`/`btop`.
+
+## Install & run
+
+```bash
+cargo install --git https://github.com/vantacorehq/pulse
 pulse
 ```
 
-Press Ctrl-C to exit.
+or
 
-## What it shows
+```bash
+git clone https://github.com/vantacorehq/pulse
+cd pulse
+cargo run --release
+```
 
-- CPU load (from /proc/stat on Linux, placeholder elsewhere)
-- Memory used / total
-- Disk activity
-- Network connections / throughput
-- Animated radar bars
+Press `Ctrl-C` to exit.
+
+## What you see
+
+```
+██ PULSE ██  cyberpunk system radar
+──────────────────────────────────────
+  CPU  ████████████████░░░░░░░░░░░░░░  52%
+  RAM  ████████████░░░░░░░░░░░░░░░░░░  41%
+  DISK ████░░░░░░░░░░░░░░░░░░░░░░░░░░  13%
+  NET  ████████████████████░░░░░░░░░░  67%
+
+radar sweep: ░░░░░░░░░░
+```
+
+## Code philosophy
+
+No external TUI libraries. Everything is ANSI escape sequences + a simple loop.
+Easy to fork and embed into your own tooling.
+
+## Tests
+
+```bash
+cargo test
+```
+
+## Commercial
+
+Need custom metrics, remote push, or a multi-node dashboard version?
+
+Typical engagement: **$600 – $1 800**.
 
 ## License
 
